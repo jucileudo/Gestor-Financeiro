@@ -11,10 +11,10 @@ namespace Gestor.Financeiro.Domain.Models.Interfaces
     {
         Task<IEnumerable<Transacao>> ObterTodos();
         Task<Transacao> ObterPorId(Guid id);
-        Task<Transacao> CadastrarTrnasacao(Transacao transacao);
+        Task<bool> CadastrarTransacao(Transacao transacao);
         Task<Transacao> AtualizarTransacao(Guid id, Transacao transacao);
 
-        Task<Transacao> ObterPorCategoria(Guid id);
+        Task<IEnumerable<Transacao>> ObterPorCategoria(Guid id);
 
 
     }

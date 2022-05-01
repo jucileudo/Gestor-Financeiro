@@ -9,9 +9,10 @@ namespace Gestor.Financeiro.Domain.Models.Interfaces
 {
     public interface IContaRepository: IRepository<Conta>
     {
-        Task<IEnumerable<Transacao>> ObterTodos();
-        Task<Transacao> ObterPorId(Guid id);
-        Task<Transacao> CadastrarTrnasacao(Transacao transacao);
-        Task<Transacao> AtualizarTransacao(Guid id, Transacao transacao);
+        Task<IEnumerable<Conta>> ObterTodos();
+        Task<Conta> ObterPorId(Guid id);
+        void CadastrarConta(Conta conta);
+        void AtualizarConta(Guid id, Conta conta);
+        Task<Conta> DesativarConta(Guid id,bool status);
     }
 }

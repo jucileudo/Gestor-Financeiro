@@ -9,21 +9,26 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Commons", "Commons", "{1664
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Services", "Services", "{78CB096E-7E70-4CD4-8417-2334060CFBF4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Gestor.Financeiro.Core", "src\commons\Gestor.Financeiro.Core\Gestor.Financeiro.Core.csproj", "{8DD66B32-D520-402F-98F1-293902436E7A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Gestor.Financeiro.Core", "src\commons\Gestor.Financeiro.Core\Gestor.Financeiro.Core.csproj", "{8DD66B32-D520-402F-98F1-293902436E7A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Gestor.Financeiro.Auth", "src\commons\Gstor.Financeiro.Auth\Gestor.Financeiro.Auth.csproj", "{3AC3357E-202D-46F0-AA43-49D5B9A28240}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Gestor.Financeiro.Auth", "src\commons\Gstor.Financeiro.Auth\Gestor.Financeiro.Auth.csproj", "{3AC3357E-202D-46F0-AA43-49D5B9A28240}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Data", "Data", "{8246BA5A-C320-4C22-B6AA-9F580FD22996}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Domain", "Domain", "{CF36C641-4670-4441-9E09-A926912F42B9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Gestor.Financeiro.Data", "src\data\Gestor.Financeiro.Data\Gestor.Financeiro.Data.csproj", "{2D3AC41C-F52E-4D6B-ACC7-9A6AD3E2F039}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Gestor.Financeiro.Data", "src\data\Gestor.Financeiro.Data\Gestor.Financeiro.Data.csproj", "{2D3AC41C-F52E-4D6B-ACC7-9A6AD3E2F039}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Gestor.Financeiro.Domain", "src\domain\Gestor.Financeiro.Domain\Gestor.Financeiro.Domain.csproj", "{CA84C849-712A-4C67-8940-82F738DD89E9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Gestor.Financeiro.Domain", "src\domain\Gestor.Financeiro.Domain\Gestor.Financeiro.Domain.csproj", "{CA84C849-712A-4C67-8940-82F738DD89E9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Gestor.Financeiro.Auth.Api", "src\services\auth.api\Gestor.Financeiro.Auth.Api\Gestor.Financeiro.Auth.Api.csproj", "{3523DCDE-F312-41F2-9D1A-017283EC78EA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Gestor.Financeiro.Auth.Api", "src\services\auth.api\Gestor.Financeiro.Auth.Api\Gestor.Financeiro.Auth.Api.csproj", "{3523DCDE-F312-41F2-9D1A-017283EC78EA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Gestor.Financeiro.Web.Api", "src\services\web.api\Gestor.Financeiro.Web.Api\Gestor.Financeiro.Web.Api.csproj", "{84D47EAC-BA7C-4E9B-A1AE-1D93EB2F7992}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Gestor.Financeiro.Web.Api", "src\services\web.api\Gestor.Financeiro.Web.Api\Gestor.Financeiro.Web.Api.csproj", "{84D47EAC-BA7C-4E9B-A1AE-1D93EB2F7992}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{97BC0E81-CE73-4885-86B7-37AA03C4B820}"
+	ProjectSection(SolutionItems) = preProject
+		.editorconfig = .editorconfig
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

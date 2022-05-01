@@ -1,9 +1,10 @@
 ﻿using Gestor.Financeiro.Domain.Models;
 using Microsoft.EntityFrameworkCore;
+using Systhem.Shop.Core.Data;
 
 namespace Gestor.Financeiro.Data.Context
 {
-    public class FinanceiroContext : DbContext
+    public class FinanceiroContext : DbContext, IUnitOfWork
     {
         public DbSet<Transacao>? Transacoes { get; set; }
         public DbSet<Conta>? Contas { get; set; }
