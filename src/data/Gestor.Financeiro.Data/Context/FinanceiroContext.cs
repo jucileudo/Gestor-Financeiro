@@ -27,7 +27,9 @@ namespace Gestor.Financeiro.Data.Context
             //modelBuilder.ApplyConfigurationsFromAssembly(typeof(FinanceiroContext).Assembly);
         }
 
-
-
+        public async Task<bool> Commit()
+        {
+            return await base.SaveChangesAsync() > 0;
+        }
     }
 }

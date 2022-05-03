@@ -30,18 +30,23 @@ namespace Gestor.Financeiro.Data.Repository
         {
             return await _context.Contas.FindAsync(id);
         }
-        public void CadastrarConta(Conta conta)
+        public async Task<bool> CadastrarConta(Conta conta)
         {
-            _context.Contas.Add(conta);
+            _context.AddAsync(conta);
+            await _context.SaveChangesAsync();
+            var result = Task.CompletedTask;
+            return result.IsCompletedSuccessfully;
 
 
         }
 
-        public void AtualizarConta(Guid id, Conta conta)
+        public async Task<bool> AtualizarConta(Guid id, Conta conta)
         {
             var contaBanco = _context.Contas.Find(id);
             contaBanco = conta;
-            _context.Contas.Add(contaBanco);
+            _context.Contas.Update(contaBanco);
+            var result = Task.CompletedTask;
+            return result.IsCompletedSuccessfully;
         }
 
 
@@ -60,8 +65,6 @@ namespace Gestor.Financeiro.Data.Repository
             _context?.Dispose();
         }
 
-
-
-
+       
     }
 }

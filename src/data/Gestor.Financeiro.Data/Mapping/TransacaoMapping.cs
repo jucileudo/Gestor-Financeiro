@@ -22,9 +22,9 @@ namespace Gestor.Financeiro.Data.Mapping
             builder.Property(c => c.Tipo)
               .IsRequired()
               .HasColumnType("varchar(250)");
+
             builder.Navigation(c => c.Conta).AutoInclude();
 
-           
         }
     }
 }

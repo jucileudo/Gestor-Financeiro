@@ -7,6 +7,7 @@ namespace Gestor.Financeiro.Auth.Api.Configuration
         public static IServiceCollection AddSwaggerConfiguration(this IServiceCollection services, WebApplicationBuilder builder
           )
         {
+
             builder.Services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo

@@ -11,8 +11,9 @@ namespace Gestor.Financeiro.Domain.Models.Interfaces
     {
         Task<IEnumerable<Conta>> ObterTodos();
         Task<Conta> ObterPorId(Guid id);
-        void CadastrarConta(Conta conta);
-        void AtualizarConta(Guid id, Conta conta);
+        Task<bool> CadastrarConta(Conta conta);
+        Task<bool> AtualizarConta(Guid id, Conta conta);
         Task<Conta> DesativarConta(Guid id,bool status);
+        
     }
 }

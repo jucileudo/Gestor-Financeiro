@@ -18,7 +18,7 @@ namespace Gestor.Financeiro.Data.Mapping
             builder.Property(c => c.Nome)
                .IsRequired()
                .HasColumnType("varchar(250)");
-            builder.Navigation(c => c.Transacoes).AutoInclude();
+          
 
           
         }

@@ -1,4 +1,5 @@
 ﻿using Gestor.Financeiro.Core.Data;
+using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,10 +10,10 @@ namespace Gestor.Financeiro.Domain.Models.Interfaces
 {
     public interface ITransacaoRepository : IRepository<Transacao>
     {
-        Task<IEnumerable<Transacao>> ObterTodos();
-        Task<Transacao> ObterPorId(Guid id);
-        Task<bool> CadastrarTransacao(Transacao transacao);
-        Task<Transacao> AtualizarTransacao(Guid id, Transacao transacao);
+        Task<ActionResult<IEnumerable<Transacao>>> ObterTodos();
+        Task<ActionResult<Transacao>> ObterPorId(Guid id);
+        void CadastrarTransacao(Transacao transacao);
+        void AtualizarTransacao(Guid id, Transacao transacao);
 
         Task<IEnumerable<Transacao>> ObterPorCategoria(Guid id);
 

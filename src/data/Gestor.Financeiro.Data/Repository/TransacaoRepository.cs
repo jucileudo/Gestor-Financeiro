@@ -1,6 +1,7 @@
 ﻿using Gestor.Financeiro.Data.Context;
 using Gestor.Financeiro.Domain.Models;
 using Gestor.Financeiro.Domain.Models.Interfaces;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -24,14 +25,19 @@ namespace Gestor.Financeiro.Data.Repository
 
         public IUnitOfWork UnitOfWork => _context;
 
-        public async Task<IEnumerable<Transacao>> ObterTodos()
+        public async Task<ActionResult<IEnumerable<Transacao>>> ObterTodos()
         {
-            return await _context.Transacoes.ToListAsync();
+            return await _context.Transacoes.Include(t => t.Conta).ToListAsync();
         }
 
-        public async Task<Transacao> ObterPorId(Guid id)
+        public async Task<ActionResult<Transacao>> ObterPorId(Guid id)
         {
-            return await _context.Transacoes.FindAsync();
+            var transacao = await _context.Transacoes.FindAsync(id);
+            var conta = await _context.Contas.FindAsync(transacao.ContaId);
+
+            transacao.Conta = conta;
+            return transacao;
+
         }
 
         public async Task<IEnumerable<Transacao>> ObterPorCategoria(Guid id)
@@ -39,35 +45,25 @@ namespace Gestor.Financeiro.Data.Repository
             return await _context.Transacoes.Where(x => x.ContaId == id).ToListAsync();
         }
 
-        public async Task<bool> CadastrarTransacao(Transacao transacao)
+        public async void CadastrarTransacao(Transacao transacao)
         {
-            await _context.Transacoes.AddAsync(transacao);
-            var result = Task.CompletedTask;
-            return result.IsCompletedSuccessfully;
+             await _context.Transacoes.AddAsync(transacao);
+            await _context.SaveChangesAsync();
 
         }
 
-        public async Task<Transacao> AtualizarTransacao(Guid id, Transacao transacao)
+        public async void AtualizarTransacao(Guid id, Transacao transacao)
         {
             var transacaoBanco = await _context.Transacoes.FindAsync(id);
             transacaoBanco = transacao;
-            await _context.Transacoes.AddAsync(transacaoBanco);
-            var result = Task.CompletedTask;
-            if (result.IsCompletedSuccessfully)
-            {
-                return transacaoBanco;
+            _context.Entry(transacao).State = EntityState.Modified;
 
-            }
-            else
-            {
-                return null;
-            }
         }
 
 
         public void Dispose()
         {
-           _context?.Dispose();
+            _context?.Dispose();
         }
 
     }

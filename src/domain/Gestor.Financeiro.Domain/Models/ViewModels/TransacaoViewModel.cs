@@ -18,7 +18,8 @@ namespace Gestor.Financeiro.Domain.Models.ViewModels
         public DateTime DataVencimento { get; set; }
         public bool Quitado { get; set; }      
         public Guid ContaId { get; set; }
+        public virtual Conta? Conta { get; set; }
 
-     
+
     }
 }

@@ -25,18 +25,17 @@ namespace Gestor.Financeiro.Domain.Models
         [Required(ErrorMessage = "Campo {0} preenchimento obrigatório!")]
 
 
-        [DataType(DataType.Date)]
-        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
+        [DataType(DataType.DateTime)]
+       
         public DateTime DataCriacao { get; set; }
         [DataType(DataType.Date)]
-        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         public DateTime DataVencimento { get; set; }
         public bool Quitado { get; set; }
 
         [ForeignKey("Categoria")]
         [Column(Order = 1)]
         public Guid ContaId { get; set; }
-
         public virtual Conta? Conta { get; set; }
+       
     }
 }

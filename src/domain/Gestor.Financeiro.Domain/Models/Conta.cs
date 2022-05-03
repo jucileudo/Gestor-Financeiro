@@ -11,7 +11,7 @@ namespace Gestor.Financeiro.Domain.Models
     {
         public string Nome { get; set; }
         public bool Ativo { get; set; }
-        public IEnumerable<Transacao>? Transacoes { get; } = new List<Transacao>();
+        //public IEnumerable<Transacao>? Transacoes { get; } = new List<Transacao>();
 
     }
 }
