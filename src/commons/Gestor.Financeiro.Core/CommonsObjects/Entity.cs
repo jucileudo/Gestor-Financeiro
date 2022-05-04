@@ -10,6 +10,12 @@ namespace Gestor.Financeiro.Core.CommonsObjects
     {
         public Guid Id { get; set; }
 
+
+        public Entity()
+        {
+            Id = Guid.NewGuid();
+        }
+
         public override bool Equals(object? obj)
         {
             var objDomain = obj as Entity;

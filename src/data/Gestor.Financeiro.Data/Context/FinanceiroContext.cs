@@ -1,10 +1,10 @@
 ﻿using Gestor.Financeiro.Domain.Models;
 using Microsoft.EntityFrameworkCore;
-using Systhem.Shop.Core.Data;
+
 
 namespace Gestor.Financeiro.Data.Context
 {
-    public class FinanceiroContext : DbContext, IUnitOfWork
+    public class FinanceiroContext : DbContext
     {
         public DbSet<Transacao>? Transacoes { get; set; }
         public DbSet<Conta>? Contas { get; set; }
@@ -27,9 +27,6 @@ namespace Gestor.Financeiro.Data.Context
             //modelBuilder.ApplyConfigurationsFromAssembly(typeof(FinanceiroContext).Assembly);
         }
 
-        public async Task<bool> Commit()
-        {
-            return await base.SaveChangesAsync() > 0;
-        }
+       
     }
 }

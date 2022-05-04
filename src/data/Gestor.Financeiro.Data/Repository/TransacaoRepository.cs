@@ -8,7 +8,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Systhem.Shop.Core.Data;
 
 namespace Gestor.Financeiro.Data.Repository
 {
@@ -23,7 +22,7 @@ namespace Gestor.Financeiro.Data.Repository
             _context = context;
         }
 
-        public IUnitOfWork UnitOfWork => _context;
+       
 
         public async Task<ActionResult<IEnumerable<Transacao>>> ObterTodos()
         {

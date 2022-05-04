@@ -8,104 +8,110 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Gestor.Financeiro.Data.Context;
 using Gestor.Financeiro.Domain.Models;
+using Gestor.Financeiro.Domain.Models.Interfaces;
+using Gestor.Financeiro.Core.Controllers;
+using Gestor.Financeiro.Core.CommonsObjects;
 
 namespace Gestor.Financeiro.Web.Api.Controllers
 {
     [Route("api/[controller]")]
-    [ApiController]
-    public class ContasController : ControllerBase
-    {
-        private readonly FinanceiroContext _context;
 
-        public ContasController(FinanceiroContext context)
+    public class ContasController : MainController
+    {
+        private readonly IContaRepository _contaRepository;
+
+        public ContasController(IContaRepository contaRepository)
         {
-            _context = context;
+            _contaRepository = contaRepository;
         }
 
-        // GET: api/Contas
-        [HttpGet]
+
+        [HttpGet("/listarContas")]
         public async Task<ActionResult<IEnumerable<Conta>>> GetContas()
         {
-            return await _context.Contas.ToListAsync();
+            return await _contaRepository.ObterTodos();
         }
 
-        // GET: api/Contas/5
-        [HttpGet("{id}")]
+
+        [HttpGet("/listarConta/{id}")]
         public async Task<ActionResult<Conta>> GetConta(Guid id)
         {
-            var conta = await _context.Contas.FindAsync(id);
+            var conta = await _contaRepository.ObterPorId(id);
 
             if (conta == null)
             {
-                return NotFound();
+                return CustomResponse(conta);
             }
 
-            return conta;
+            return Ok(conta);
         }
 
-        // PUT: api/Contas/5
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
-        [HttpPut("{id}")]
+
+        [HttpPut("/atualizar/{id}")]
         public async Task<IActionResult> PutConta(Guid id, Conta conta)
         {
             if (id != conta.Id)
             {
-                return BadRequest();
+                return CustomResponse(conta);
             }
 
-            _context.Entry(conta).State = EntityState.Modified;
 
             try
             {
-                await _context.SaveChangesAsync();
+                var result = await _contaRepository.AtualizarConta(id, conta);
+                if (result > 0) return Ok();
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!ContaExists(id))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
+                
+                    throw new DomainException("Erro ao efetuar o procesamento! Tente novamente mais tarde");
+                
             }
 
             return NoContent();
         }
 
-        // POST: api/Contas
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
-        [HttpPost]
+       
+        [HttpPost("/cadastrarConta")]
         public async Task<ActionResult<Conta>> PostConta(Conta conta)
         {
-            var id = Guid.NewGuid();
-            conta.Id = id;
-            _context.Contas.Add(conta);
-            await _context.SaveChangesAsync();
+            if(!ModelState.IsValid) return CustomResponse(conta);
 
-            return CreatedAtAction("GetConta", new { id = conta.Id }, conta);
+            try
+            {
+                var result = await _contaRepository.CadastrarConta( conta);
+                if (result > 0) return Ok();
+            }
+            catch (DbUpdateConcurrencyException)
+            {
+                throw new DomainException("Erro ao efetuar o procesamento! Tente novamente mais tarde");                
+            }
+
+            return NoContent();
         }
 
         // DELETE: api/Contas/5
-        [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteConta(Guid id)
+        [HttpPut("/destivar/{id}")]
+        public async Task<IActionResult> DesativarConta(Guid id,bool status)
         {
-            var conta = await _context.Contas.FindAsync(id);
-            if (conta == null)
+            
+
+
+            try
             {
-                return NotFound();
+                var result = await _contaRepository.DesativarConta(id, status);
+                 return Ok(result);
+            }
+            catch (DbUpdateConcurrencyException)
+            {
+                
+                    throw new DomainException("Erro ao efetuar o procesamento! Tente novamente mais tarde");
+                
             }
 
-            _context.Contas.Remove(conta);
-            await _context.SaveChangesAsync();
-
-            return NoContent();
+            return NoContent(); 
         }
 
-        private bool ContaExists(Guid id)
-        {
-            return _context.Contas.Any(e => e.Id == id);
-        }
+        
     }
 }
