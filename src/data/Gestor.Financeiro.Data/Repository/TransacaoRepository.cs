@@ -56,7 +56,7 @@ namespace Gestor.Financeiro.Data.Repository
             var transacaoBanco = await _context.Transacoes.FindAsync(id);
             transacaoBanco = transacao;
             _context.Entry(transacao).State = EntityState.Modified;
-
+           await  _context.SaveChangesAsync();
         }
 
 

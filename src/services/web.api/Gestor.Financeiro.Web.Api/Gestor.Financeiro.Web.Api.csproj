@@ -21,6 +21,7 @@
 
 	<ItemGroup>
 	  <ProjectReference Include="..\..\..\commons\Gestor.Financeiro.Core\Gestor.Financeiro.Core.csproj" />
+	  <ProjectReference Include="..\..\..\commons\Gstor.Financeiro.Auth\Gestor.Financeiro.Auth.csproj" />
 	  <ProjectReference Include="..\..\..\data\Gestor.Financeiro.Data\Gestor.Financeiro.Data.csproj" />
 	  <ProjectReference Include="..\..\..\domain\Gestor.Financeiro.Domain\Gestor.Financeiro.Domain.csproj" />
 	</ItemGroup>

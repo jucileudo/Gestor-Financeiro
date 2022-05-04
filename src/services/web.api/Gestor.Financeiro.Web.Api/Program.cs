@@ -14,7 +14,9 @@ if (app.Environment.IsDevelopment())
 app.UseCors("FullAccess");
 app.UseHttpsRedirection();
 
+app.UseAuthentication();
 app.UseAuthorization();
+
 
 app.MapControllers();
 

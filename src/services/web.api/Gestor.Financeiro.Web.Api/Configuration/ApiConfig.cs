@@ -1,5 +1,6 @@
 ﻿
 using Gestor.Financeiro.Auth.Api.Configuration;
+using Gestor.Financeiro.Auth.Identidade;
 using Gestor.Financeiro.Data.Context;
 using Gestor.Financeiro.Data.Repository;
 using Gestor.Financeiro.Domain.Models.Interfaces;
@@ -21,7 +22,7 @@ namespace Gestor.Financeiro.Web.Api.Configuration
             .AddJsonFile("appsettings.json", true, true)
             .AddJsonFile($"appsettings.{builder.Environment.EnvironmentName}", true, true)
             .AddEnvironmentVariables();
-
+            builder.Services.AddJwtConfiguration(builder);
             builder.Services.AddDbContext<FinanceiroContext>(option => option.UseNpgsql(builder.Configuration.GetConnectionString("TransactionsConnection")));
             builder.Services.ConfigAutoMapper(builder);
             builder.Services.AddScoped<IContaRepository, ContaRepository>();

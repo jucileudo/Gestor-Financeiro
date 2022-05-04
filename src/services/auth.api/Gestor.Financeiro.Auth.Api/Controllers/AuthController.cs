@@ -1,6 +1,7 @@
 ﻿using Gestor.Financeiro.Auth.Identidade;
 using Gestor.Financeiro.Core.Controllers;
 using Gestor.Financeiro.Domain.Models.Auth;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Options;
@@ -12,6 +13,7 @@ using System.Text;
 namespace Gestor.Financeiro.Auth.Api.Controllers
 {
     [Route("api/identidade")]
+    [AllowAnonymous]
     public class AuthController : MainController
     {
         private readonly SignInManager<IdentityUser> _signInManager;

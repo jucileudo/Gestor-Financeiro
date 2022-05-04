@@ -11,11 +11,12 @@ using Gestor.Financeiro.Domain.Models;
 using Gestor.Financeiro.Core.Controllers;
 using Gestor.Financeiro.Domain.Models.Interfaces;
 using AutoMapper;
+using Microsoft.AspNetCore.Authorization;
 
 namespace Gestor.Financeiro.Web.Api.Controllers
 {
     [Route("api/[controller]")]
-
+    [Authorize]
     public class TransacaosController : MainController
     {
         private readonly ITransacaoRepository _transacaorepository;
@@ -31,6 +32,7 @@ namespace Gestor.Financeiro.Web.Api.Controllers
 
        
         [HttpGet]
+       
         public async Task<ActionResult<IEnumerable<Transacao>>> ObterTodas()
         {
             return await _transacaorepository.ObterTodos();
